@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mateen Cloud</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="/assets/favicon.svg" alt="Mateen Cloud logo" />
+      <span class="brand-name">Mateen Cloud</span>
+      <button class="sidebar-close" id="sidebarClose">✕</button>
+    </div>
+
+    <ul class="nav" id="navList">
+      <li><button class="nav-item active" data-view="dashboard"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10"/></svg>Dashboard</button></li>
+      <li><button class="nav-item" data-view="files"><svg class="icon" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>My Files</button></li>
+      <li><button class="nav-item" data-view="recent"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Recent</button></li>
+      <li><button class="nav-item" data-view="shared"><svg class="icon" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>Shared</button></li>
+      <li><button class="nav-item" data-view="starred"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>Starred</button></li>
+      <li><button class="nav-item" data-view="trash"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2m-8 0v12a2 2 0 002 2h4a2 2 0 002-2V7"/></svg>Trash</button></li>
+      <li><button class="nav-item" data-view="settings"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.6V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.6-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.6V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.6 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.6 1H21a2 2 0 110 4h-.2a1.7 1.7 0 00-1.6 1z"/></svg>Settings</button></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="storage-mini">
+        <div class="label" id="miniStorageLabel">Loading storage…</div>
+        <div class="bar"><div class="bar-fill" id="miniStorageBar" style="width:0%"></div></div>
+      </div>
+      <div class="dev-credit">© 2026 Mateen Cloud<br/>Developed by <span class="rgb-credit">ABDUL MATEEN</span></div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="search-box">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Search files and folders…" />
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-primary" id="uploadBtn"><svg class="icon" viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5l5 5M4 20h16"/></svg><span class="txt">Upload</span></button>
+        <button class="btn" id="newFolderBtn"><svg class="icon" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M12 11v4M10 13h4"/></svg><span class="txt">New Folder</span></button>
+        <button class="icon-btn" id="notifBtn" title="Notifications"><svg class="icon" viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></button>
+        <button class="avatar" id="avatarBtn" title="Account">U</button>
+      </div>
+    </header>
+
+    <main class="content" id="content"><!-- rendered by app.js --></main>
+  </div>
+</div>
+
+<input type="file" id="fileInputHidden" multiple style="display:none" />
+
+<!-- Upload modal -->
+<div class="overlay" id="uploadOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3>Upload files</h3><button class="close-btn" data-close="uploadOverlay">✕</button></div>
+    <div class="modal-body">
+      <div class="dropzone" id="dropzone">
+        <div class="icon-big">☁️</div>
+        <div>Drag &amp; drop files here</div>
+        <div style="margin:10px 0;color:var(--muted);font-size:12.5px;">or</div>
+        <button class="btn btn-primary" id="browseBtn">Browse Files</button>
+      </div>
+      <div id="uploadList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- New folder modal -->
+<div class="overlay" id="folderOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3>New folder</h3><button class="close-btn" data-close="folderOverlay">✕</button></div>
+    <div class="modal-body">
+      <div class="field"><label>Folder name</label><input type="text" id="folderNameInput" placeholder="Untitled folder" /></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-close="folderOverlay">Cancel</button>
+      <button class="btn btn-primary" id="createFolderConfirm">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- Rename modal -->
+<div class="overlay" id="renameOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3 id="renameTitle">Rename</h3><button class="close-btn" data-close="renameOverlay">✕</button></div>
+    <div class="modal-body">
+      <div class="field"><label>Name</label><input type="text" id="renameInput" /></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-close="renameOverlay">Cancel</button>
+      <button class="btn btn-primary" id="renameConfirm">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Share modal -->
+<div class="overlay" id="shareOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3 id="shareTitle">Share</h3><button class="close-btn" data-close="shareOverlay">✕</button></div>
+    <div class="modal-body" id="shareBody"></div>
+  </div>
+</div>
+
+<!-- Details modal -->
+<div class="overlay" id="detailsOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3>File Details</h3><button class="close-btn" data-close="detailsOverlay">✕</button></div>
+    <div class="modal-body" id="detailsBody"></div>
+  </div>
+</div>
+
+<!-- Preview modal -->
+<div class="overlay" id="previewOverlay">
+  <div class="modal modal-wide">
+    <div class="modal-header"><h3 id="previewTitle">Preview</h3><button class="close-btn" data-close="previewOverlay">✕</button></div>
+    <div class="modal-body">
+      <div class="preview-body" id="previewBody"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" id="previewDownloadBtn">Download</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm modal -->
+<div class="overlay" id="confirmOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3 id="confirmTitle">Are you sure?</h3><button class="close-btn" data-close="confirmOverlay">✕</button></div>
+    <div class="modal-body" id="confirmBody"></div>
+    <div class="modal-footer">
+      <button class="btn" data-close="confirmOverlay">Cancel</button>
+      <button class="btn btn-danger" id="confirmActionBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Context menu -->
+<div class="ctx-menu" id="ctxMenu"></div>
+
+<!-- Toasts -->
+<div class="toast-stack" id="toastStack"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
