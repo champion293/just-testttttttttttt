@@ -6,3 +6,6 @@ storage/files/
 storage/trash/
 storage/db.json
 *.log
+
+.vercel
+.env*
